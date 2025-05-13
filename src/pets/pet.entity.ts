@@ -1,10 +1,10 @@
-
 import {
   Entity, PrimaryGeneratedColumn, Column, CreateDateColumn,
-  UpdateDateColumn, OneToMany,
+  UpdateDateColumn, OneToMany, ManyToOne
 } from 'typeorm';
 import { PetAccess } from '../pet-access/pet-access.entity';
 import { Species } from './enums/species.enum';
+import { User } from '../users/user.entity';
 
 @Entity()
 export class Pet {
@@ -23,12 +23,15 @@ export class Pet {
   @Column({ type: 'date', nullable: true })
   birthdate?: Date;
 
+  @ManyToOne(() => User, { eager: true })
+  owner!: User;
+
+  @OneToMany(() => PetAccess, access => access.pet)
+  accesses!: PetAccess[];
+
   @CreateDateColumn()
   createdAt!: Date;
 
   @UpdateDateColumn()
   updatedAt!: Date;
-
-  @OneToMany(() => PetAccess, access => access.pet)
-  accesses!: PetAccess[];
 }

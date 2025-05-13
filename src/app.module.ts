@@ -3,8 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-// import { PetsModule } from './pets/pets.module';
-// import { PetAccessModule } from './pet-access/pet-access.module';
+import { PetsModule } from './pets/pets.module';
+import { PetAccessModule } from './pet-access/pet-access.module';
 
 import { User } from './users/user.entity';
 import { Pet } from './pets/pet.entity';
@@ -25,8 +25,8 @@ import { ProfileController } from './profile.controller';
     }),
     UsersModule,
     AuthModule,
-    // PetsModule,
-    // PetAccessModule,
+    PetsModule,
+    PetAccessModule,
   ],
   controllers: [ProfileController],
 })
