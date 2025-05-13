@@ -1,6 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { User } from '../users/user.entity';
+import { CreateUserDto } from '../users/dto/create-user-dto';
+import { LoginDto } from '../users/dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -8,15 +9,15 @@ export class AuthController {
 
   @Post('register')
   async register(
-    @Body() body: Partial<User>,
-  ): Promise<{ access_token: string; user: { id: number; email: string } }> {
-    return this.authService.register(body);
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<{ access_token: string; user: { id: string; email: string } }> {
+    return this.authService.register(createUserDto);
   }
 
   @Post('login')
   async login(
-    @Body() body: { email: string; password: string },
-  ): Promise<{ access_token: string; user: { id: number; email: string } }> {
-    return this.authService.login(body);
+    @Body() loginDto: LoginDto,
+  ): Promise<{ access_token: string; user: { id: string; email: string } }> {
+    return this.authService.login(loginDto);
   }
 }

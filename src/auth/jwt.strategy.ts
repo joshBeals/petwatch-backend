@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { User } from '../users/user.entity';
 
 interface JwtPayload {
-  sub: number;
+  sub: string;
   email: string;
 }
 

@@ -8,8 +8,8 @@ import { PetAccess } from '../pet-access/pet-access.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id!: number;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @Column()
   name!: string;
